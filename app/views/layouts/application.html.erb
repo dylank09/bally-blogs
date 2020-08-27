@@ -4,7 +4,17 @@
     <title>BallyBlogs</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    
+    <div class = 'Navbar'>
+
+      <%= link_to "Home Page", root_path %>
+      <%= link_to "Register", new_user_registration_path %>
+      <%= link_to "Login", new_user_session_path %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <%= link_to "Edit User", edit_user_registration_path %>
+
+    </div>
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
