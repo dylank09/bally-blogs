@@ -1,5 +1,7 @@
 <h1>New Post Creator</h1>
 
+<p id="notice"><%= flash[:notice] %></p>
+
 <%= form_for @post do |f| %>
     <%= f.label :title %>
     <br>
@@ -10,4 +12,4 @@
     <%= f.text_field :content %>
     <br>
     <%= f.submit %>
-<% end%>
+<% end %>

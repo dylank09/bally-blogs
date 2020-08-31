@@ -7,8 +7,9 @@ class PostsController < ApplicationController
 
     def create
         @post = Post.new(post_params)
-        if @post.save
-            redirect_to @post
+        if @post.save 
+            # flash.now[:notice] = "success"
+            render plain: "Success! Your post was created." #replace with: redirect_to @post, notice: "success...." when the other stuff is made
         else
             render 'new'
         end
@@ -20,5 +21,6 @@ class PostsController < ApplicationController
     def post_params
         params.require(:post).permit(:title, :content)
     end
+
 
 end
