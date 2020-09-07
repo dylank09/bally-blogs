@@ -10,18 +10,20 @@ class PostsController < ApplicationController
         @post = Post.new(post_params)
         @post.user_id = current_user.id
         if @post.save 
-            # flash.now[:notice] = "success"
-            render plain: "Success! Your post was created." #replace with: redirect_to @post, notice: "success...." when the other stuff is made
+            redirect_to @post, notice: "Your post was successfully created!"
         else
             render 'new'
         end
     end
 
+    def index
+        @posts = Post.all
+    end
 
     private
 
     def post_params
-        params.require(:post).permit(:title, :content) #post can only be made with these parameters
+        params.require(:post).permit(:title, :content, :user) #post can only be made with these parameters
     end
 
 
