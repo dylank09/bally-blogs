@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     end
 
     def index
-        @posts = Post.all
+        @posts = Post.all.order("created_at DESC")   #orders by date created at. newest first
     end
 
     private
