@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-    before_action :authenticate_user! #user cannot access post creation page without being authenticated
+    before_action :authenticate_user!, only: [:new, :create] #user cannot access post creation page without being authenticated
 
     def new
         @post = Post.new

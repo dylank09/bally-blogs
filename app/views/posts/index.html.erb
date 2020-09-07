@@ -4,8 +4,12 @@
 <h1> <%= post.title %> </h1>
 
 <div>
-<p> <%= post.content %> </p> 
+<p> <%= post.content.truncate(300, omission: '...') %> </p> 
+</div>
+
+<div>
 <p> author: <%= post.user.full_name %> </p>
+<p> created at: <%= post.created_at.to_date %> </p>
 </div>
 
 <br>
