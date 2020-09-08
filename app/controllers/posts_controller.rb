@@ -20,6 +20,10 @@ class PostsController < ApplicationController
         @posts = Post.all.order("created_at DESC")   #orders by date created at. newest first
     end
 
+    def show
+        @post = Post.find(params[:id])
+    end
+
     private
 
     def post_params
