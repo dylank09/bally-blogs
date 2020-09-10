@@ -9,11 +9,23 @@
 
       <%= link_to "Home Page", root_path %>
       <%= link_to "Register", new_user_registration_path %>
-      <%= link_to "Login", new_user_session_path %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+
+      <% if !user_signed_in? %>
+        <%= link_to "Login", new_user_session_path %>  
+      <% else %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <% end %>
+      
       <%= link_to "Edit User", edit_user_registration_path %>
 
+      <%= link_to "Back", :back %>
+
     </div>
+
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -22,8 +34,6 @@
   <body>
     <%= yield %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
   </body>
 </html>

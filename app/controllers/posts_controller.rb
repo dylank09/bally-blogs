@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-    before_action :authenticate_user! #user cannot access post creation page without being authenticated
+    before_action :authenticate_user!, only: [:new, :create] #user cannot access post creation page without being authenticated
 
     def new
         @post = Post.new
@@ -10,18 +10,24 @@ class PostsController < ApplicationController
         @post = Post.new(post_params)
         @post.user_id = current_user.id
         if @post.save 
-            # flash.now[:notice] = "success"
-            render plain: "Success! Your post was created." #replace with: redirect_to @post, notice: "success...." when the other stuff is made
+            redirect_to @post, notice: "Your post was successfully created!"
         else
             render 'new'
         end
     end
 
+    def index
+        @posts = Post.all.order("created_at DESC")   #orders by date created at. newest first
+    end
+
+    def show
+        @post = Post.find(params[:id])
+    end
 
     private
 
     def post_params
-        params.require(:post).permit(:title, :content) #post can only be made with these parameters
+        params.require(:post).permit(:title, :content, :user) #post can only be made with these parameters
     end
 
 

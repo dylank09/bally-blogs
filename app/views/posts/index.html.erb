@@ -1,0 +1,16 @@
+
+<% @posts.each do |post| %>
+<h1> <%= link_to post.title, post %> </h1>
+
+<div>
+<p> <%= post.content.truncate(300, omission: '...') %> </p> 
+</div>
+
+<div>
+<p> author: <%= post.user.full_name %> </p>
+<p> created at: <%= post.created_at.to_date %> </p>
+</div>
+
+<br>
+
+<% end %>
