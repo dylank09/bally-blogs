@@ -8,8 +8,8 @@
     <div class = 'Navbar'>
 
       <%= link_to "Home Page", root_path %>
+      <%= link_to " Posts " , posts_path %>
       <%= link_to "Register", new_user_registration_path %>
-
 
       <% if !user_signed_in? %>
 
@@ -17,12 +17,11 @@
       
       <% else %>
 
+        <%= link_to "New Post", new_post_path %>   
         <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+        <%= link_to "Edit User", edit_user_registration_path %>
 
       <% end %>
-        
-      
-      <%= link_to "Edit User", edit_user_registration_path %>
 
       <%= link_to "Back", :back %>
 
