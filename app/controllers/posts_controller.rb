@@ -24,6 +24,23 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
     end
 
+    def edit 
+        @post = Post.find(params[:id])
+        unless current_user == @post.user
+            redirect_to @post, notice: "You cannot edit this post"
+         end
+
+    end
+
+    def update
+        @post = Post.find(params[:id])
+        if @post.update_attributes(params.require(:post).permit(:content, :title))
+            redirect_to @post, notice: "Your post was successfully updated"
+        else
+            render 'edit'
+        end
+    end
+
     private
 
     def post_params
