@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     def edit 
         @post = Post.find(params[:id])
         unless current_user == @post.user
-            redirect_to @post, notice: "You cannot edit this post"
+            redirect_to @post, notice: "You are not authorised to edit this post."
          end
 
     end
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
     def update
         @post = Post.find(params[:id])
         if @post.update_attributes(params.require(:post).permit(:content, :title))
-            redirect_to @post, notice: "Your post was successfully updated"
+            redirect_to @post, notice: "Your post was successfully updated."
         else
             render 'edit'
         end
