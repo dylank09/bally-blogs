@@ -7,3 +7,9 @@
 <%= @post.user.full_name %>
 <%= @post.created_at.to_date %>
 </div>
+
+<div> 
+<% if current_user == @post.user %>
+    <%= link_to "Edit", edit_post_path %>
+<% end %>
+</div>
