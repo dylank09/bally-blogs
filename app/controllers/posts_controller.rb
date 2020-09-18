@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-    before_action :authenticate_user!, only: [:new, :create] #user cannot access post creation page without being authenticated
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy] #user cannot access post creation page without being authenticated
 
     def new
         @post = Post.new
@@ -42,13 +42,19 @@ class PostsController < ApplicationController
     end
 
     def destroy
-        puts "hello"
         @post = Post.find(params[:id])
 
         unless current_user == @post.user
             redirect_to @post, notice: "You are not authorised to delete this post."
         end
-        
+
+        if !@post.soft_delete
+            puts @post.soft_delete  #to-do: remove
+            @post.soft_delete = DateTime.current
+            puts @post.soft_delete  #to-do: remove
+            @post.soft_delete = nil #to-do: remove
+            puts @post.soft_delete  #to-do: remove
+        end
 
     end
 
