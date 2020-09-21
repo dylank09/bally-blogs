@@ -17,7 +17,8 @@ class PostsController < ApplicationController
     end
 
     def index
-        @posts = Post.all.order("created_at DESC")   #orders by date created at. newest first
+        @posts = Post.not_deleted.order("created_at DESC")   #Orders by date created at with newest first. 
+                                                             #Only show the ones in the scope "not_deleted"
     end
 
     def show
@@ -42,18 +43,14 @@ class PostsController < ApplicationController
     end
 
     def destroy
-        @post = Post.find(params[:id])
+        @post = Post.find(params[:id])   #find the post
 
         unless current_user == @post.user
             redirect_to @post, notice: "You are not authorised to delete this post."
         end
 
-        if !@post.soft_delete
-            puts @post.soft_delete  #to-do: remove
-            @post.soft_delete = DateTime.current
-            puts @post.soft_delete  #to-do: remove
-            @post.soft_delete = nil #to-do: remove
-            puts @post.soft_delete  #to-do: remove
+        if @post.soft_delete == nil     #if the post is not deleted, it is equal to nil.
+            @post.soft_delete_f
         end
 
     end
