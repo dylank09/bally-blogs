@@ -8,4 +8,8 @@ class Post < ApplicationRecord
         update(soft_delete: DateTime.current)  #soft delete the post
     end
 
+    def undo_delete
+        update(soft_delete: nil)  #undo the soft delete
+    end
+
 end

@@ -51,6 +51,8 @@ class PostsController < ApplicationController
 
         if @post.soft_delete == nil     #if the post is not deleted, it is equal to nil.
             @post.soft_delete_f
+        elsif @post.soft_delete != nil   #if the post is deleted and this action was called then it will undo the delete.
+            @post.undo_delete
         end
 
     end
