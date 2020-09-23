@@ -51,11 +51,13 @@ class PostsController < ApplicationController
 
         if @post.soft_delete == nil     #if the post is not deleted, it is equal to nil.
             @post.soft_delete_f         #then delete it
+            flash.now[:notice] = "Your post was deleted."
             render 'show'
             #flash.notice = "Your post was deleted."
 
         elsif @post.soft_delete != nil   #if the post is deleted and this action was called then it will undo the delete.
             @post.undo_delete
+            flash.now[:notice] = "Your post was restored"
             render 'show'
 
         end
