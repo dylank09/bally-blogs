@@ -1,14 +1,14 @@
 
 <% @posts.each do |post| %>
-<h1> <%= link_to post.title, post %> </h1>
+<h2> <%= link_to post.title, post %> </h2>
 
 <div>
 <p> <%= post.content.truncate(300, separator: ' ') %> </p> 
 </div>
 
 <div>
-<p> author: <%= post.user.full_name %> </p>
-<p> created at: <%= post.created_at.to_date %> </p>
+<p> Author: <%= post.user.full_name %> </p>
+<p> Created: <%= post.created_at.to_date %> </p>
 </div>
 
 <br>

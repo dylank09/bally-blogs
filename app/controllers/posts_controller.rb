@@ -50,9 +50,14 @@ class PostsController < ApplicationController
         end
 
         if @post.soft_delete == nil     #if the post is not deleted, it is equal to nil.
-            @post.soft_delete_f
+            @post.soft_delete_f         #then delete it
+            render 'show'
+            #flash.notice = "Your post was deleted."
+
         elsif @post.soft_delete != nil   #if the post is deleted and this action was called then it will undo the delete.
             @post.undo_delete
+            render 'show'
+
         end
 
     end
@@ -60,7 +65,7 @@ class PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:title, :content, :user) #post can only be made with these parameters
+        params.require(:post).permit(:title, :content, :user, :soft_delete) #post can only be made with these parameters
     end
 
 
