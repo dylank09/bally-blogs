@@ -12,4 +12,3 @@ v1.2: Added view for list of posts. List of posts displays author, title (links 
 v1.1: Added static home page. Created post model with user ID, title, context and date & time when created. Set up authentication using Devise. Set up view to input the post details. User must be authenticated to create a post. Success message displayed on post creation. (01/09/2020)
 
 v1.0: Devise gem added to project for later use. Global navbar added for easy routing on the website for dev use. (26/08/2020)
-

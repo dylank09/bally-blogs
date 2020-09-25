@@ -3,13 +3,36 @@
 
 <p> <%= @post.content %> </p>
 
-<div> 
+<p> 
 <%= @post.user.full_name %>
 <%= @post.created_at.to_date %>
-</div>
+</p>
 
 <div> 
 <% if current_user == @post.user %>
-    <%= link_to "Edit", edit_post_path %>
+
+    <button>
+        <%= link_to "Edit", edit_post_path %>
+    </button>
+    <br>
+
+    <% if @post.soft_delete == nil %>
+
+        <button>
+            <%= link_to "Delete", post_url(@post), method: :delete %>
+        </button>
+
+    <% elsif @post != nil %>
+
+        <h3> Are you sure you want to delete this post? </h3>
+        <button> 
+            <%= link_to "Yes", posts_path, notice: "Your post was successfully deleted." %> 
+        </button>
+        <button>
+            <%= link_to "Undo", post_url(@post), method: :delete %>
+        </button> 
+
+    <% end %>    
+
 <% end %>
 </div>
