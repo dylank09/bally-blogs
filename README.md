@@ -5,7 +5,9 @@ There are too many blogging engines in the world today, so I will build one more
 
 ###### *The name of the project comes from the name of where I grew up; Ballydesmond*
 
-v1.3 (coming soon) : Added edit functionality. A user can edit their blog article once logged in.
+v1.4 : Added delete post functionality. A user can now delete their blog article. After clicking delete, a user is asked if they are sure they wish to delete the post or not. If they wish to keep the post they can click undo. Otherwise, when they leave the page or click 'yes' then the post will remain deleted.
+
+v1.3 : Added edit functionality. A user can edit their blog article once logged in.
 
 v1.2: Added view for list of posts. List of posts displays author, title (links to the post itself) , truncated context, date of creation. Also added a user reference to the posts table. A user can have many posts but a post may only have one user/author. (08/09/2020)
 
