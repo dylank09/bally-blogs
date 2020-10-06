@@ -1,25 +1,26 @@
-class ApplicationController < ActionController::API
-    before_action :configure_permitted_parameters, if:  :devise_controller?
-
-
-    protected
-
-    def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email, :password, :password_confirmation, :remember_me])
-        devise_parameter_sanitizer.permit(:sign_in, keys: [:login, :email, :password, :remember_me])
-        devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :email, :password, :password_confirmation, :current_password])
-        
+class ApplicationController < ActionController::Base
+    
+    skip_before_action :verify_authenticity_token
+    helper_method :login!, :logged_in?, :current_user, :authorized_user?, :logout!
+  
+    def login!
+      session[:user_id] = @user.id
     end
-
-
-    private
-
-    def after_sign_out_path_for(user)
-        new_user_session_path
+    
+    def logged_in?
+      !!session[:user_id]
     end
-
-    def after_sign_in_path_for(user)
-        root_path #or posts_path ?
+    
+    def current_user
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    end
+    
+    def authorized_user?
+       @user == current_user
+     end
+    
+    def logout!
+        session.clear
     end
 
 end

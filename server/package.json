@@ -1,5 +1,5 @@
 {
-  "name": "bally_blogs",
+  "name": "server",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
