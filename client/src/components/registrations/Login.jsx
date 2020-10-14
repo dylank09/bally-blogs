@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import '../../stylesheets/Registrations.css';
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -14,16 +15,18 @@ class Login extends Component {
   componentWillMount() {
     return this.props.loggedInStatus ? this.redirect() : null
   }
-handleChange = (event) => {
+  
+  handleChange = (event) => {
     const {name, value} = event.target
     this.setState({
       [name]: value
     })
   };
-handleSubmit = (event) => {
+
+  handleSubmit = (event) => {
     event.preventDefault()
     const {username, email, password} = this.state
-let user = {
+    let user = {
       username: username,
       email: email,
       password: password
@@ -42,10 +45,12 @@ let user = {
     })
     .catch(error => console.log('api errors:', error))
   };
-redirect = () => {
+
+  redirect = () => {
     this.props.history.push('/')
   }
-handleErrors = () => {
+
+  handleErrors = () => {
     return (
       <div>
         <ul>
@@ -57,48 +62,49 @@ handleErrors = () => {
       </div>
     )
   }
-render() {
+
+  render() {
     const {username, email, password} = this.state
-return (
-      <div>
-        <h1>Log In</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            placeholder="username"
-            type="text"
-            name="username"
-            value={username}
-            onChange={this.handleChange}
-          />
-          <input
-            placeholder="email"
-            type="text"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-          />
-          <input
-            placeholder="password"
-            type="password"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-          />
-          <button placeholder="submit" type="submit">
-            Log In
-          </button>
-          <div>
-            or <Link to='/signup'>sign up</Link>
+    return (
+        <div>
+          <h1>Log In</h1>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              placeholder="username"
+              type="text"
+              name="username"
+              value={username}
+              onChange={this.handleChange}
+            /> <br></br>
+            <input
+              placeholder="email"
+              type="text"
+              name="email"
+              value={email}
+              onChange={this.handleChange}
+            /> <br></br>
+            <input
+              placeholder="password"
+              type="password"
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+            /> <br></br>
+            <button placeholder="submit" type="submit">
+              Log In
+            </button>
+            <div>
+              or <Link to='/signup'>sign up</Link>
+            </div>
+            
+            </form>
+            <div>
+            {
+              this.state.errors ? this.handleErrors() : null
+            }
           </div>
-          
-          </form>
-          <div>
-          {
-            this.state.errors ? this.handleErrors() : null
-          }
         </div>
-      </div>
-    );
-  }
+      );
+    }
 }
 export default Login;

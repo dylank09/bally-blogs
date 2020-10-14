@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import '../../stylesheets/Registrations.css'
+
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -63,28 +65,28 @@ return (
             name="username"
             value={username}
             onChange={this.handleChange}
-          />
+          /> <br></br>
           <input
             placeholder="email"
             type="text"
             name="email"
             value={email}
             onChange={this.handleChange}
-          />
+          /> <br></br>
           <input 
             placeholder="password"
             type="password"
             name="password"
             value={password}
             onChange={this.handleChange}
-          />
+          /> <br></br>
           <input
             placeholder="password confirmation"
             type="password"
             name="password_confirmation"
             value={password_confirmation}
             onChange={this.handleChange}
-          />
+          /> <br></br>
         
           <button placeholder="submit" type="submit">
             Sign Up
