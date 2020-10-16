@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders app 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <nav
+        class="navbar"
+      >
+        <span>
+          <a
+            class="nav-link"
+            href="/login"
+          >
+            Log In
+          </a>
+          <br />
+          <a
+            class="nav-link"
+            href="/signup"
+          >
+            Sign Up
+          </a>
+        </span>
+        <br />
+        <a
+          class="nav-link"
+          href="/posts"
+        >
+          Posts
+        </a>
+        <br />
+      </nav>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders post component 1`] = `
+<DocumentFragment>
+  <div>
+    <nav>
+      <a
+        class="nav-link"
+        href="/posts"
+      >
+        Posts
+      </a>
+            
+      <br />
+      <a
+        class="nav-link"
+        href="/"
+      >
+        Home
+      </a>
+                  
+      <br />
+    </nav>
+    <div>
+      <h2>
+        <a
+          class="post-title"
+          href="/posts/undefined"
+        />
+      </h2>
+      <p
+        class="post-body"
+      >
+          
+      </p>
+      <p
+        class="post-date"
+      >
+         Created on:  
+      </p>
+      <br />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders post list 1`] = `
+<DocumentFragment>
+  <div>
+    <nav>
+      <a
+        class="nav-link"
+        href="/"
+      >
+        Home
+      </a>
+       
+      <br />
+    </nav>
+    <ul
+      class="posts-list"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders post page 1`] = `
+<DocumentFragment>
+  <div>
+    <nav>
+      <a
+        class="nav-link"
+        href="/posts"
+      >
+        Posts
+      </a>
+            
+      <br />
+      <a
+        class="nav-link"
+        href="/"
+      >
+        Home
+      </a>
+                  
+      <br />
+    </nav>
+    <div>
+      <h2>
+        <a
+          class="post-title"
+          href="/posts/undefined"
+        />
+      </h2>
+      <p
+        class="post-body"
+      >
+          
+      </p>
+      <p
+        class="post-date"
+      >
+         Created on:  
+      </p>
+      <br />
+    </div>
+  </div>
+</DocumentFragment>
+`;

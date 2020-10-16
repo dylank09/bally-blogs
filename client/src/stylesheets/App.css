@@ -8,10 +8,12 @@ div {
 
 nav {
     margin: 10px;
-    display: flexbox;
+    border-radius: 5%;
 }
 
 .nav-link {
+    margin: auto;
+    border-radius: 15%;
     display:block;
     max-width: 100px;
     margin-left:2px;;
