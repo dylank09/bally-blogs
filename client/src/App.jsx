@@ -4,9 +4,9 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Home from './components/Home';
 import Login from './components/registrations/Login';
 import Signup from './components/registrations/Signup';
-import PostsList from './posts/PostsList';
 import PostPage from './posts/PostPage';
 import NewPost from './posts/NewPost';
+import BlogsApi from './services/BlogsApi';
 import './stylesheets/App.css';
 
 class App extends Component {
@@ -67,13 +67,16 @@ class App extends Component {
                 )}
               />
               <Route 
-                exact path={["/", "/posts"]} component={PostsList} 
+                path="/posts/:id"
+                render={props => (
+                  <PostPage {...props} blogApi={BlogsApi}/>
+                )}
               />
               <Route 
-                path="/posts/:id" component={PostPage} 
-              />
-              <Route 
-                exact path="/new" component={NewPost} 
+                exact path="/new" 
+                render={props => (
+                  <NewPost {...props} blogApi={BlogsApi}/>
+                )}
               />
             </Switch>
           </BrowserRouter>

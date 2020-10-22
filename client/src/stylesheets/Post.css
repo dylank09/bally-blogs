@@ -1,3 +1,11 @@
+.error {
+    max-width: 960px;
+    margin: auto;
+    background-color: rgb(240, 29, 29);
+    color: white;
+    text-align: center;
+}
+
 .post-title {
     text-decoration: none;
     padding-left: 5px;
@@ -34,19 +42,24 @@
 .body-input {
     width: 80%;
     word-break: break-word;
-    height: 150px;
+    height: 130px;
     padding: 12px 20px;
     box-sizing: border-box;
     margin-left: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 2px;
     resize: none;
 }
 
 .submit-input {
     float: right;
     border: none;
-	padding: 8px 15px 8px 15px;
+	padding: 8px;
 	background: #FF8500;
 	color: #fff;
 	box-shadow: 1px 1px 4px #DADADA;
 }
+
+form {
+    height: auto;
+    padding-bottom: 0px;
+} 

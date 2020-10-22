@@ -1,41 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import Post from '../components/Post';
-import BlogsApi from '../services/BlogsApi';
 import { useParams, Link } from 'react-router-dom';
 
-const PostPage = () => {
+const PostPage = ({blogApi}) => {
 
     const { id } = useParams();
-    const [post,setPost] = useState([]);
+    const [state,setState] = useState({loading: true});
 
     useEffect(() => {
         
         const getPost = async () => {
-          const postData = await BlogsApi.fetchPost(id);
-          setPost(postData)
+          const postData = await blogApi.fetchPost(id);
+          setState({
+              loading: false,
+              postData
+          })
+          
         }
     
         getPost();
     
-      },[id]);
+    },[id, blogApi]);
 
-    return (
-        <div>
-            <nav>
-                <Link className="nav-link" to='/posts'>Posts</Link>      <br></br>
-                <Link className="nav-link" to='/'>Home</Link>            <br></br>
-            </nav>
+    if (state.loading) {
+        return (
+            <div><h2 className="loading">LOADING...</h2></div>
+            // <Spinner type="circle-spinner" />
+        )
+    }
 
-            <Post 
-                id={post.id}
-                title={post.title}
-                body={post.body}
-                date={post.created_at}
-            />
+    else {
+        return (
+            <div>
+                <nav>
+                    <Link className="nav-link" to='/'>Home</Link>            <br></br>
+                </nav>
+                <Post 
+                    id={state.postData.id}
+                    title={state.postData.title}
+                    body={state.postData.body}
+                    date={state.postData.created_at?.substring(0, 10)}
+                />
 
-        </div>
-             
-    );
+            </div>
+                
+        );
+    }
 };
 
 export default PostPage;

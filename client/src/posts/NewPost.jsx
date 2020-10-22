@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import BlogsApi from '../services/BlogsApi';
 import {useHistory, Link} from 'react-router-dom';
 import '../stylesheets/Post.css'
 
-const NewPost = () => {
+const NewPost = ({blogApi}) => {
 
     let history = useHistory();
     const [body,setBody] = useState('');
     const [title,setTitle] = useState('');
+    const [error,setError] = useState('');
 
     const titleChangeHandler = (e) => {
         setTitle(e.target.value);
@@ -18,25 +18,34 @@ const NewPost = () => {
     }
 
     const createPost = (e) => {
-        if (title.length > 1) {
-            BlogsApi.sendPost(title, body)
+        if (title.length > 0) {
+            blogApi.sendPost(title, body)
             e.preventDefault();
-            history.push(`/posts`);
+            history.push(`/`);
+        }
+        else {
+            setError("Title must be present.")
+            e.preventDefault();
         }
         
     }
 
     return (
         <div>
+            { error &&
+                <h3 className="error"> { error } </h3> 
+            }
+
             <nav>
-                <Link className="nav-link" to='/posts'>Posts</Link>      <br></br>
                 <Link className="nav-link" to='/'>Home</Link>            <br></br>
             </nav>
 
+            <h1>New Post</h1>
             <form onSubmit={createPost}>
                 <label className="form-label">
                     <input className="title-input" 
                            type="text"
+                           data-testid="titleInput"
                            placeholder="title"
                            onChange={titleChangeHandler}
                     />

@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Post from '../components/Post';
-import BlogsApi from '../services/BlogsApi';
-import {Link} from 'react-router-dom';
 
-const PostsList = ({postsArray}) => {
+const PostsList = ({blogApi}) => {
 
-    const [posts, setPosts] = useState();
+    const [state, setState] = useState({loading: true});
     
     const truncate = (text) => {
         if(text.length > 300) {
@@ -19,33 +17,41 @@ const PostsList = ({postsArray}) => {
     useEffect(() => {
 
         const getPosts = async () => {
-          const postsData = await BlogsApi.fetchPosts();
-          setPosts(postsData);
+          const posts = await blogApi.fetchPosts();
+          setState({
+            loading: false,
+            posts
+          });
         }
     
         getPosts();
     
-      },[]);
+    },[blogApi]);
 
-    return (
-        <div>
-            <nav>
-                <Link className="nav-link" to='/'>Home</Link> <br></br>
-            </nav>
 
-            <ul className="posts-list"> 
-                    {posts ? posts.map(post =>  (
+    if (state.loading) {
+        return <div><h2 className="loading">LOADING...</h2></div>
+    }
+    else {
+        return (
+            <div>
+
+                <h2>Posts</h2>
+                <ul className="posts-list"> 
+                        {state.posts ? state.posts.map(post =>  (
+                            
+                            <Post key={post.id}
+                                id={post.id}
+                                title={post.title}
+                                body={truncate(post.body)}
+                                date={post.created_at.substring(0,10)}/>
                         
-                        <Post key={post.id}
-                            id={post.id}
-                            title={post.title}
-                            body={truncate(post.body)}
-                            date={post.created_at.substring(0,10)}/>
-                    
-                    )) : null}
-            </ul>
-        </div>
-    );
+                        )) : null}
+                </ul>
+                
+            </div>
+        );
+    }
 };
 
 export default PostsList;
