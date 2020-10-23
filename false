@@ -1,2 +1,0 @@
-      invoke  active_record
-   identical    db/migrate/20200825161242_change_column.rb

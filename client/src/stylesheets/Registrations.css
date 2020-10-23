@@ -1,0 +1,15 @@
+input {
+    width: 30%;
+    height: auto;
+    padding: 3px;
+    margin: 4px;
+}
+
+button {
+    float: right;
+    border: none;
+	padding: 8px 15px 8px 15px;
+	background: #FF8500;
+	color: #fff;
+	box-shadow: 1px 1px 4px #DADADA;
+}
