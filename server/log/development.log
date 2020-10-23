@@ -68265,3 +68265,27 @@ Processing by PostsController#index as HTML
 Completed 200 OK in 5ms (Views: 3.2ms | ActiveRecord: 1.4ms | Allocations: 1430)
 
 
+Started GET "/posts/" for 127.0.0.1 at 2020-10-23 11:38:08 +0100
+Started GET "/posts/" for 127.0.0.1 at 2020-10-23 11:38:08 +0100
+Started GET "/posts/" for 127.0.0.1 at 2020-10-23 11:38:08 +0100
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PostsController#index as HTML
+  [1m[35m (18.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (2.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY created_at DESC[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+  [1m[36mPost Load (1.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY created_at DESC[0m
+Processing by PostsController#index as HTML
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY created_at DESC[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 18ms (Views: 13.9ms | ActiveRecord: 4.3ms | Allocations: 5903)
+
+
+Completed 200 OK in 24ms (Views: 4.9ms | ActiveRecord: 18.4ms | Allocations: 8521)
+
+
+Completed 200 OK in 29ms (Views: 3.6ms | ActiveRecord: 21.6ms | Allocations: 11489)
+
+
