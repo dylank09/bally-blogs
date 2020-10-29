@@ -68289,3 +68289,42 @@ Completed 200 OK in 24ms (Views: 4.9ms | ActiveRecord: 18.4ms | Allocations: 852
 Completed 200 OK in 29ms (Views: 3.6ms | ActiveRecord: 21.6ms | Allocations: 11489)
 
 
+Started GET "/logged_in" for ::1 at 2020-10-25 10:41:40 +0000
+Started GET "/posts/" for ::1 at 2020-10-25 10:41:40 +0000
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (3.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY created_at DESC[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 18ms (Views: 12.7ms | ActiveRecord: 3.4ms | Allocations: 1732)
+
+
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 130)
+
+
+Started GET "/posts/" for ::1 at 2020-10-28 16:29:19 +0000
+Started GET "/logged_in" for ::1 at 2020-10-28 16:29:19 +0000
+Processing by PostsController#index as HTML
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mPost Load (3.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY created_at DESC[0m
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.0ms | Allocations: 128)
+
+
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 43ms (Views: 33.8ms | ActiveRecord: 3.3ms | Allocations: 2820)
+
+
+Started GET "/posts/58" for ::1 at 2020-10-28 16:29:21 +0000
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"58"}
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 58], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:19:in `show'
+Completed 200 OK in 57ms (Views: 0.5ms | ActiveRecord: 1.0ms | Allocations: 3032)
+
+
+Started GET "/posts/" for ::1 at 2020-10-28 16:29:23 +0000
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY created_at DESC[0m
+  ↳ app/controllers/posts_controller.rb:6:in `index'
+Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 0.3ms | Allocations: 1341)
+
+
