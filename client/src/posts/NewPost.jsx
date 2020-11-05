@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import '../stylesheets/Post.css'
 
-const NewPost = ({blogApi}) => {
+const NewPost = ({blogApi, loggedInStatus}) => {
 
     let history = useHistory();
     const [body,setBody] = useState('');
@@ -17,15 +17,17 @@ const NewPost = ({blogApi}) => {
         setBody(e.target.value);
     }
 
-    const createPost = (e) => {
+    const createPost =  async (e) => {
+        e.preventDefault();
+
         if (title.length > 0) {
-            blogApi.sendPost(title, body)
-            e.preventDefault();
-            history.push(`/`);
+            if(loggedInStatus) {
+                blogApi.sendPost(title, body)   
+                .then(()=> history.push('/'))
+            }
         }
         else {
             setError("Title must be present.")
-            e.preventDefault();
         }
         
     }
@@ -45,6 +47,7 @@ const NewPost = ({blogApi}) => {
                 <label className="form-label">
                     <input className="title-input" 
                            type="text"
+                           name="title"
                            data-testid="titleInput"
                            placeholder="title"
                            onChange={titleChangeHandler}
@@ -54,6 +57,7 @@ const NewPost = ({blogApi}) => {
                 <label className="form-label">
                     <textarea className="body-input"  
                            type="text"
+                           name="body"
                            placeholder="body"
                            onChange={bodyChangeHandler}
                     />

@@ -35,7 +35,7 @@ class PostsController < ApplicationController
     end
 
     def create
-    
+      sleep 2
         if logged_in?
             @post = Post.new(post_params)
             @post.user_id = current_user.id
@@ -44,18 +44,20 @@ class PostsController < ApplicationController
                 status: :created,
                 message: "post was created",
                 data: @post
-            }
+            }, :status => :created
+            
             else 
             render json: {  
                 status: 500,
                 errors: ['post not created']
-            }
+            }, :status => 500
             end
         else
             render json: {
                 status: 500,
                 errors: ['user not logged in']
-            }
+            }, :status => 500
+            
         end
     end
 

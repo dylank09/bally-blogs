@@ -37,6 +37,7 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/dom": "^7.26.0"
+    "@testing-library/dom": "^7.26.0",
+    "cypress": "^5.5.0"
   }
 }

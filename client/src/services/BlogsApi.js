@@ -20,17 +20,8 @@ const BlogsApi = {
             title: titleText,
             body: bodyText
         }
-        axios.post('http://localhost:3001/posts', {post}, {withCredentials: true})
-        .then(response => {
-            if (response.data.status === "created") {
-                console.log(response.data);
-                return response.data;
-            }
-            else {
-                return;
-            }
-        })
-        .catch(error => console.log('api errors:', error))
+        
+        return axios.post('http://localhost:3001/posts', {post}, {withCredentials: true})
         
     },
       

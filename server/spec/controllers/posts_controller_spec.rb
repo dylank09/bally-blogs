@@ -1,39 +1,26 @@
 require 'rails_helper'
+require 'support/utilities.rb'
 
 describe "get all posts route", :type => :request do
-  
     let!(:posts) { 
-        Post.create ({"title":"Title", "body":"Body"})
+        @post = Post.create ({"title":"Title", "body":"Body", "user_id":"1"})
     }
     
-    before {get '/posts'}
+    before { get '/posts' }
     it 'returns all posts' do
-        puts response;
-    expect(JSON.parse(response.body)["data"].size).to eq(1)
+        expect(response).to have_http_status(:success)
     end
 
-    it 'returns status code 200' do
-    expect(response).to have_http_status(:success)
+    it 'should have title as "Title"' do
+        expect(@post.title).to eq("Title")
     end
 
-
-end
-
-describe "get a single post", :type => :request do
-    
-    before {
-        @user = User.create({
-            "username":"coolio35", "email":"coolio35@mail.com", 
-            "password":"coolio3535", 
-            "password_confirmation":"coolio3535"
-        })
-        @post = Post.create({"title":"Title1", "body":"Body1"})
-    }
-
-    it 'gets the post title' do
-        get "/posts/#{@post.id}"                          
-        expect(JSON.parse(response.body)["data"]).to include({
-                            "title"=>"Title1", "body"=>"Body1"
-        })
+    it 'should have body as "Body"' do
+        expect(@post.body).to eq("Body")
     end
+
+    it 'should have user id as "1"' do
+        expect(@post.user_id).to eq(1)
+    end
+
 end

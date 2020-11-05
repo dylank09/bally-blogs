@@ -15,7 +15,6 @@ const PostsList = ({blogApi}) => {
     }
 
     useEffect(() => {
-
         const getPosts = async () => {
           const posts = await blogApi.fetchPosts();
           setState({

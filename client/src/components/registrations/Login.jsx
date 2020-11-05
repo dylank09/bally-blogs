@@ -66,7 +66,13 @@ class Login extends Component {
   render() {
     const {username, email, password} = this.state
     return (
+
         <div>
+
+          <nav>
+            <Link className="nav-link" to='/'>Home</Link>            <br></br>
+          </nav>
+
           <h1>Log In</h1>
           <form onSubmit={this.handleSubmit}>
             <input
@@ -76,6 +82,7 @@ class Login extends Component {
               value={username}
               onChange={this.handleChange}
             /> <br></br>
+
             <input
               placeholder="email"
               type="text"
@@ -83,6 +90,7 @@ class Login extends Component {
               value={email}
               onChange={this.handleChange}
             /> <br></br>
+
             <input
               placeholder="password"
               type="password"
@@ -90,19 +98,23 @@ class Login extends Component {
               value={password}
               onChange={this.handleChange}
             /> <br></br>
+
             <button placeholder="submit" type="submit">
-              Log In
+              Login
             </button>
+
             <div>
               or <Link to='/signup'>sign up</Link>
             </div>
             
             </form>
+
             <div>
             {
               this.state.errors ? this.handleErrors() : null
             }
           </div>
+
         </div>
       );
     }

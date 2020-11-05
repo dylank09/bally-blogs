@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 import '../../stylesheets/Registrations.css'
 
 class Signup extends Component {
@@ -57,6 +58,11 @@ render() {
     const {username, email, password, password_confirmation} = this.state
 return (
       <div>
+
+        <nav>
+          <Link className="nav-link" to='/'>Home</Link>            <br></br>
+        </nav>
+
         <h1>Sign Up</h1>
         <form onSubmit={this.handleSubmit}>
           <input
@@ -66,6 +72,7 @@ return (
             value={username}
             onChange={this.handleChange}
           /> <br></br>
+
           <input
             placeholder="email"
             type="text"
@@ -73,6 +80,7 @@ return (
             value={email}
             onChange={this.handleChange}
           /> <br></br>
+
           <input 
             placeholder="password"
             type="password"
@@ -80,6 +88,7 @@ return (
             value={password}
             onChange={this.handleChange}
           /> <br></br>
+
           <input
             placeholder="password confirmation"
             type="password"
@@ -93,11 +102,13 @@ return (
           </button>
       
         </form>
+
         <div>
           {
             this.state.errors ? this.handleErrors() : null
           }
         </div>
+
       </div>
     );
   }

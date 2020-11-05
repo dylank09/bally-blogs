@@ -75,7 +75,7 @@ class App extends Component {
               <Route 
                 exact path="/new" 
                 render={props => (
-                  <NewPost {...props} blogApi={BlogsApi}/>
+                  <NewPost {...props} blogApi={BlogsApi} loggedInStatus={this.state.isLoggedIn}/>
                 )}
               />
             </Switch>

@@ -1,21 +1,23 @@
 require 'rails_helper'
-require 'application_controller.rb'
+require 'support/utilities.rb'
 
 describe "tests users", :type => :request do
     
-    before { 
+    let!(:users) { 
         @user = User.create({
             "username":"coolio35", "email":"coolio35@mail.com", 
             "password":"coolio3535", 
             "password_confirmation":"coolio3535"
         })
     }   
-    it 'should create and log in user' do
-        expect(logged_in?).to eq(true)
+    it 'should be the first user' do
+        expect(@user.id).to eq(1);
     end
 
-    it 'should log out the user' do
-        expect(current_user)
+    it 'should log out the user and not add a user id to post' do
+        @user.destroy;
+        @post = Post.create ({"title":"Title", "body":"Body"});
+        expect(@post.user_id).not_to eq(1);
     end
 
 end
