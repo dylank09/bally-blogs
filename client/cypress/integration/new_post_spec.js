@@ -23,8 +23,8 @@ describe('new post page', () => {
     })
 
     it('should navigate to new post page', () => {
-        cy.contains('a.nav-link', 'New Post').click()
-        cy.contains('h1', 'New Post')
+        cy.contains('a.nav-link', 'New Blog').click()
+        cy.contains('h1', 'New Blog')
 
     })
 
@@ -36,7 +36,7 @@ describe('new post page', () => {
         cy.contains('Submit').click()
 
         //should be redireted to home page with posts
-        cy.contains('Posts')
+        cy.contains('Blogs')
         cy.contains(uniqueTime)
     })
 

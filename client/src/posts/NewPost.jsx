@@ -5,9 +5,12 @@ import '../stylesheets/Post.css'
 const NewPost = ({blogApi, loggedInStatus}) => {
 
     let history = useHistory();
-    const [body,setBody] = useState('');
-    const [title,setTitle] = useState('');
-    const [error,setError] = useState('');
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
+    const [state, setState] = useState({
+        loading: false,
+        error: ''
+    });  
 
     const titleChangeHandler = (e) => {
         setTitle(e.target.value);
@@ -21,28 +24,35 @@ const NewPost = ({blogApi, loggedInStatus}) => {
         e.preventDefault();
 
         if (title.length > 0) {
-            if(loggedInStatus) {
-                blogApi.sendPost(title, body)   
-                .then(()=> history.push('/'))
-            }
+            setState({loading: true})
+            blogApi.sendPost(title, body)   
+            .then(()=> history.push('/'))
         }
         else {
-            setError("Title must be present.")
+            setState({
+                loading: false,
+                error: "Title must be present."
+            })
         }
         
     }
 
+if (state.loading) {
+    return <div><h2 className="loading">Please wait while we process your post...</h2></div>
+}
+else {
+
     return (
         <div>
-            { error &&
-                <h3 className="error"> { error } </h3> 
+            { state.error &&
+                <h3 className="error"> { state.error } </h3> 
             }
 
             <nav>
                 <Link className="nav-link" to='/'>Home</Link>            <br></br>
             </nav>
 
-            <h1>New Post</h1>
+            <h1>New Blog</h1>
             <form onSubmit={createPost}>
                 <label className="form-label">
                     <input className="title-input" 
@@ -72,6 +82,7 @@ const NewPost = ({blogApi, loggedInStatus}) => {
         </div>
              
     );
-};
+    }
+}
 
 export default NewPost;

@@ -34,20 +34,21 @@ const PostsList = ({blogApi}) => {
     else {
         return (
             <div>
-
-                <h2>Posts</h2>
-                <ul className="posts-list"> 
-                        {state.posts ? state.posts.map(post =>  (
+                {state.posts.length > 0 ? 
+                    <span>
+                        <h2>Blogs</h2>
+                        <ul className="posts-list"> 
+                            {state.posts.map(post =>  (
                             
-                            <Post key={post.id}
-                                id={post.id}
-                                title={post.title}
-                                body={truncate(post.body)}
-                                date={post.created_at.substring(0,10)}/>
-                        
-                        )) : null}
-                </ul>
-                
+                                <Post key={post.id}
+                                    id={post.id}
+                                    title={post.title}
+                                    body={truncate(post.body)}
+                                    date={post.created_at.substring(0,10)}/>
+                            ))}
+                        </ul>
+                    </span>
+                : null}
             </div>
         );
     }

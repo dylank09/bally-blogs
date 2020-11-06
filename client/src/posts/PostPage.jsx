@@ -40,6 +40,7 @@ const PostPage = ({blogApi}) => {
                     title={state.postData.title}
                     body={state.postData.body}
                     date={state.postData.created_at?.substring(0, 10)}
+                    username={state.postData.username}
                 />
 
             </div>

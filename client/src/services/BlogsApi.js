@@ -18,12 +18,17 @@ const BlogsApi = {
     sendPost: async (titleText, bodyText) => {
         let post = {
             title: titleText,
-            body: bodyText
+            body: bodyText,
         }
         
-        return axios.post('http://localhost:3001/posts', {post}, {withCredentials: true})
+        return axios.post(POSTS_URL, {post}, {withCredentials: true})
+        .catch(error => {return ('api error: ', error)})
         
     },
+
+    deletePost: async (id) => {
+        return axios.post(POSTS_URL + "/delete", {withCredentials: true})
+    }
       
 
 }

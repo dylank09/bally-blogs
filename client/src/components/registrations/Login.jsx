@@ -43,37 +43,31 @@ class Login extends Component {
         })
       }
     })
-    .catch(error => console.log('api errors:', error))
+    .catch(error => this.setState({errors: error}))
   };
 
   redirect = () => {
     this.props.history.push('/')
   }
 
-  handleErrors = () => {
-    return (
-      <div>
-        <ul>
-        {this.state.errors.map(error => {
-        return <li key={error}>{error}</li>
-          })
-        }
-        </ul>
-      </div>
-    )
-  }
-
   render() {
+
     const {username, email, password} = this.state
+
     return (
 
-        <div>
+      <div>
+
+          { this.state.errors &&
+              <h3 className="error"> { this.state.errors } </h3> 
+          }
 
           <nav>
             <Link className="nav-link" to='/'>Home</Link>            <br></br>
           </nav>
 
           <h1>Log In</h1>
+          
           <form onSubmit={this.handleSubmit}>
             <input
               placeholder="username"
@@ -108,14 +102,8 @@ class Login extends Component {
             </div>
             
             </form>
-
-            <div>
-            {
-              this.state.errors ? this.handleErrors() : null
-            }
-          </div>
-
-        </div>
+      </div>
+      
       );
     }
 }

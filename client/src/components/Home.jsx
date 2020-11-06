@@ -9,14 +9,14 @@ const Home = (props) => {
 
   return (
    
-    <div>
+    <span>
       <Navbar history={props.history} handleLogout={props.handleLogout} loggedInStatus={props.loggedInStatus}/>
 
       <h1 className="header"> Bally Blogs </h1>
 
       <PostsList blogApi={BlogsApi}/>
 
-    </div>
+    </span>
   );
 };
 export default Home;

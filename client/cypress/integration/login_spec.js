@@ -33,7 +33,7 @@ describe('Login page', () => {
 
     it('should have redirected user to home page and be logged in', () => {
         cy.contains('Bally Blogs')
-        cy.contains('New Post')
+        cy.contains('a.nav-link', 'New Blog')
         cy.contains('Log Out')
 
         cy.getCookies()

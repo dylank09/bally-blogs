@@ -25,7 +25,7 @@ describe('Sign up', () => {
     it('should have redirected user to homepage and logged them in', () => {
         cy.contains('h1.header', 'Bally Blogs')
         cy.contains('a.nav-link', 'Log Out')
-        cy.contains('a.nav-link', 'New Post')
+        cy.contains('a.nav-link', 'New Blog')
     })
     
 })

@@ -6,6 +6,12 @@
     text-align: center;
 }
 
+div {
+    border: black;
+    background-origin: padding-box;
+    height: max-content;
+}
+
 .post-title {
     text-decoration: none;
     padding-left: 5px;
@@ -25,6 +31,14 @@
     float: right;
 }
 
+.post-user {
+    float: left;
+}
+
+.post-data {
+    font-weight: lighter;
+}
+
 .form-label {
     margin:0 0 3px 0;
 	padding:0px;
@@ -41,7 +55,8 @@
 }
 
 .body-input {
-    width: 80%;
+    width: 80vw;
+    max-width: 912px;
     word-break: break-word;
     height: 130px;
     padding: 12px 20px;
@@ -54,15 +69,16 @@
 }
 
 .submit-input {
-    float: right;
     border: none;
-	padding: 8px;
+    margin-left: 10px;
+    padding: 8px;
+    font-size: medium;
 	background: #FF8500;
 	color: #fff;
 	box-shadow: 1px 1px 4px #DADADA;
 }
 
 form {
-    height: auto;
+    height: 100%;
     padding-bottom: 0px;
 } 
