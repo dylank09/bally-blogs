@@ -2,7 +2,7 @@
 
 describe('Posts page', () => {
 
-    it('should show posts', () => {
+    it('should show blogs', () => {
         cy.contains('h1', 'Blogs')
     })
 })

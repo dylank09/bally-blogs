@@ -39,6 +39,10 @@ div {
     font-weight: lighter;
 }
 
+.delete-button {
+    float: right;
+}
+
 .form-label {
     margin:0 0 3px 0;
 	padding:0px;

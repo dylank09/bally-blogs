@@ -14,10 +14,13 @@ describe('Sign up', () => {
     })
 
     it('should input user details and submit user ', () => {
-        cy.get('input[name=username]').type('testuser2')
-        cy.get('input[name=email]').type('testmail2@mail.com')
-        cy.get('input[name=password]').type('compsci123')
-        cy.get('input[name=password_confirmation]').type('compsci123')
+        let now = Date.now()
+        let uniqueUsername = now + 'user'
+        let uniqueEmail = now + '@mail.com'
+        cy.get('input[name=username]').type(uniqueUsername)
+        cy.get('input[name=email]').type(uniqueEmail)
+        cy.get('input[name=password]').type('userpass')
+        cy.get('input[name=password_confirmation]').type('userpass')
 
         cy.contains('button', 'Sign Up').click()
     })

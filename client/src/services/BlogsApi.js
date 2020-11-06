@@ -27,7 +27,7 @@ const BlogsApi = {
     },
 
     deletePost: async (id) => {
-        return axios.post(POSTS_URL + "/delete", {withCredentials: true})
+        return axios.delete(POSTS_URL + id , {withCredentials: true})
     }
       
 

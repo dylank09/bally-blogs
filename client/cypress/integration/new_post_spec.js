@@ -2,6 +2,12 @@
 
 describe('new post page', () => {
 
+    let user = {
+        username: 'user',
+        email: 'user@mail.de',
+        password: `user123`
+    }
+
     beforeEach(() => {
         Cypress.Cookies.preserveOnce('_session_id')
     })
@@ -9,9 +15,9 @@ describe('new post page', () => {
     it('should log in user', () => {
         cy.visit('/login')
     
-        cy.get('input[name=username]').type('dylank09')
-        cy.get('input[name=email]').type('dylank09@gmail.com')
-        cy.get('input[name=password]').type(`Coolio35`)
+        cy.get('input[name=username]').type(user.username)
+        cy.get('input[name=email]').type(user.email)
+        cy.get('input[name=password]').type(user.password)
     
         cy.contains('Login').click()
 

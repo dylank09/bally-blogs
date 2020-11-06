@@ -69,7 +69,7 @@ class App extends Component {
               <Route 
                 path="/posts/:id"
                 render={props => (
-                  <PostPage {...props} blogApi={BlogsApi}/>
+                  <PostPage {...props} blogApi={BlogsApi} loggedInStatus={this.state.isLoggedIn} user_id={this.state.user.id}/>
                 )}
               />
               <Route 

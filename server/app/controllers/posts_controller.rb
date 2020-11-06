@@ -39,6 +39,7 @@ class PostsController < ApplicationController
             @post = Post.new(post_params)
             @post.user_id = current_user.id
             @post.username = current_user.username
+            @post.soft_delete = nil
             if @post.save!
 
               render json: {
@@ -71,6 +72,8 @@ class PostsController < ApplicationController
           errors: ['User is not authorised to delete this post.']
         }, :status => 500
       end
+
+      @post.soft_delete_post
 
     end
 
