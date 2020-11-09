@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
     
     def index
-        posts = Post.all.order("created_at DESC");
+        posts = Post.not_deleted.order("created_at DESC");
         if posts
           render json: {
             status: :success,
@@ -35,34 +35,52 @@ class PostsController < ApplicationController
     end
 
     def create
-    
         if logged_in?
             @post = Post.new(post_params)
             @post.user_id = current_user.id
-            if @post.save
-                render json: {
-                status: :created,
-                message: "post was created",
-                data: @post
-            }
+            @post.username = current_user.username
+            @post.soft_delete = nil
+            if @post.save!
+
+              render json: {
+              status: :created,
+              message: "Post was created.",
+              data: @post
+              }, :status => :created
+            
             else 
-            render json: {  
-                status: 500,
-                errors: ['post not created']
-            }
+              render json: {  
+                  status: 500,
+                  errors: ['Post was not created.', :error]
+              }, :status => 500
             end
         else
             render json: {
                 status: 500,
-                errors: ['user not logged in']
-            }
+                errors: ['User not logged in.']
+            }, :status => 500
+            
         end
+    end
+
+    def destroy
+      @post = Post.find(params[:id])   #find the post
+
+      unless current_user == @post.user
+        render json: {
+          status: 500,
+          errors: ['User is not authorised to delete this post.']
+        }, :status => 500
+      end
+
+      @post.soft_delete_post
+
     end
 
     private
       
     def post_params
-        params.require(:post).permit(:title, :body)
+        params.require(:post).permit(:title, :body, :username)
     end
 
 end

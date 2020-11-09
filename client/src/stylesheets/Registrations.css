@@ -1,15 +1,29 @@
 input {
     width: 30%;
+    min-width: 200px;
     height: auto;
     padding: 3px;
     margin: 4px;
 }
 
+form {
+    max-width: max-content;
+}
+
 button {
-    float: right;
     border: none;
-	padding: 8px 15px 8px 15px;
+    margin-top: 5px;
+    margin-left: 4px;
+	padding: 6px 12px;
 	background: #FF8500;
 	color: #fff;
 	box-shadow: 1px 1px 4px #DADADA;
+}
+
+.error {
+    max-width: 960px;
+    margin: auto;
+    background-color: rgb(240, 29, 29);
+    color: white;
+    text-align: center;
 }

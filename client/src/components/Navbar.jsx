@@ -23,7 +23,7 @@ const Navbar = ({history, handleLogout, loggedInStatus}) => {
           <span>
             <Link className="nav-link" to='/logout' onClick={handleClick}>Log Out</Link> 
             <br></br>
-            <Link className="nav-link" to='/new'>New Post</Link> 
+            <Link className="nav-link" to='/new'>New Blog</Link> 
           </span>  
           : 
           <span>

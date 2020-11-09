@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 import '../../stylesheets/Registrations.css'
 
 class Signup extends Component {
@@ -13,12 +14,14 @@ class Signup extends Component {
       errors: ''
      };
   }
+
 handleChange = (event) => {
-    const {name, value} = event.target
-    this.setState({
-      [name]: value
-    })
-  };
+  const {name, value} = event.target
+  this.setState({
+    [name]: value
+  })
+};
+
 handleSubmit = (event) => {
     event.preventDefault()
     const {username, email, password, password_confirmation} = this.state
@@ -27,78 +30,78 @@ handleSubmit = (event) => {
       email: email,
       password: password,
       password_confirmation: password_confirmation
-    }
+    
+}
+
 axios.post('http://localhost:3001/users', {user}, {withCredentials: true})
     .then(response => {
       if (response.data.status === 'created') {
         this.props.handleLogin(response.data)
-        this.redirect()
+        this.props.history.push('/')
       } else {
         this.setState({
           errors: response.data.errors
         })
       }
     })
-    .catch(error => console.log('api errors:', error))
-  };
-redirect = () => {
-    this.props.history.push('/')
-  }
-handleErrors = () => {
-    return (
-      <div>
-        <ul>{this.state.errors.map((error) => {
-          return <li key={error}>{error}</li>
-        })}</ul> 
-      </div>
-    )
-  }
+    .catch(error => this.setState({errors: error}))
+};
+
 render() {
-    const {username, email, password, password_confirmation} = this.state
-return (
-      <div>
-        <h1>Sign Up</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            placeholder="username"
-            type="text"
-            name="username"
-            value={username}
-            onChange={this.handleChange}
-          /> <br></br>
-          <input
-            placeholder="email"
-            type="text"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-          /> <br></br>
-          <input 
-            placeholder="password"
-            type="password"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-          /> <br></br>
-          <input
-            placeholder="password confirmation"
-            type="password"
-            name="password_confirmation"
-            value={password_confirmation}
-            onChange={this.handleChange}
-          /> <br></br>
-        
-          <button placeholder="submit" type="submit">
-            Sign Up
-          </button>
+  const {username, email, password, password_confirmation} = this.state
+
+  return (
+    <div>
+
+      { this.state.errors &&
+          <h3 className="error"> { this.state.errors[0] } </h3> 
+      }
+
+      <nav>
+        <Link className="nav-link" to='/'>Home</Link>            <br></br>
+      </nav>
+
+      <h1>Sign Up</h1>
+      <form onSubmit={this.handleSubmit}>
+        <input
+          placeholder="username"
+          type="text"
+          name="username"
+          value={username}
+          onChange={this.handleChange}
+        /> <br></br>
+
+        <input
+          placeholder="email"
+          type="text"
+          name="email"
+          value={email}
+          onChange={this.handleChange}
+        /> <br></br>
+
+        <input 
+          placeholder="password"
+          type="password"
+          name="password"
+          value={password}
+          onChange={this.handleChange}
+        /> <br></br>
+
+        <input
+          placeholder="password confirmation"
+          type="password"
+          name="password_confirmation"
+          value={password_confirmation}
+          onChange={this.handleChange}
+        /> <br></br>
       
-        </form>
-        <div>
-          {
-            this.state.errors ? this.handleErrors() : null
-          }
-        </div>
-      </div>
+        <button placeholder="submit" type="submit">
+          Sign Up
+        </button>
+    
+      </form>
+
+    </div>
     );
   }
 }
