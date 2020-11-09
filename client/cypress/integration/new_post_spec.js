@@ -41,7 +41,7 @@ describe('new post page', () => {
        
         cy.contains('Submit').click()
 
-        //should be redireted to home page with posts
+        //should be redirected to home page with posts
         cy.contains('Blogs')
         cy.contains(uniqueTime)
     })
