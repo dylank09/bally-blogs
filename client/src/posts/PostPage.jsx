@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Post from "../components/Post";
 import { useParams, Link, useHistory } from "react-router-dom";
 
-const PostPage = ({ blogApi, loggedInStatus, user_id }) => {
+const PostPage = ({ blogApi, loggedInStatus, userId }) => {
   let history = useHistory();
   const { id } = useParams();
   const [state, setState] = useState({ loading: true });
@@ -10,12 +10,6 @@ const PostPage = ({ blogApi, loggedInStatus, user_id }) => {
   const handleDelete = () => {
     blogApi.deletePost(id).then(() => {
       history.push("/");
-    });
-  };
-
-  const handleEdit = () => {
-    blogApi.deletePost(id).then(() => {
-      history.push("/new");
     });
   };
 
@@ -48,15 +42,10 @@ const PostPage = ({ blogApi, loggedInStatus, user_id }) => {
           <br></br>
         </nav>
 
-        {loggedInStatus && user_id === state.postData.user_id ? (
-          <span>
-            <button className="delete-button" onClick={handleDelete}>
-              Delete
-            </button>
-            <button className="edit-button" onClick={handleEdit}>
-              Edit
-            </button>{" "}
-          </span>
+        {loggedInStatus && userId === state.postData.user_id ? (
+          <button className="delete-button" onClick={handleDelete}>
+            Delete
+          </button>
         ) : null}
         <Post
           id={state.postData.id}
