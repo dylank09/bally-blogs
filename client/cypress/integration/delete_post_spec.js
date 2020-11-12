@@ -42,7 +42,7 @@ describe('delete a post after creating it', () => {
        
         cy.contains('Submit').click()
 
-        //should be redireted to home page with posts
+        //should be redirected to home page with posts
         cy.contains('h2', 'Blogs')
         cy.contains(uniqueTitle)
     })
@@ -52,7 +52,7 @@ describe('delete a post after creating it', () => {
         cy.contains(`Created by: ${user.username}`)
         cy.contains('button', 'Delete').click()
 
-        //should be redireted to home page with posts
+        //should be redirected to home page with posts
         cy.contains('h2', 'Blogs')
         cy.contains(uniqueTitle).should('not.exist')
         

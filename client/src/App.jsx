@@ -49,17 +49,33 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <Switch>
-            <Route
-              exact
-              path="/"
-              render={(props) => (
-                <Home
-                  {...props}
-                  handleLogout={this.handleLogout}
-                  loggedInStatus={this.state.isLoggedIn}
-                />
-              )}
-            />
+            {this.state.user && this.state.isLoggedIn ? (
+              <Route
+                exact
+                path="/"
+                render={(props) => (
+                  <Home
+                    {...props}
+                    handleLogout={this.handleLogout}
+                    loggedInStatus={this.state.isLoggedIn}
+                    user={this.state.user.username}
+                  />
+                )}
+              />
+            ) : (
+              <Route
+                exact
+                path="/"
+                render={(props) => (
+                  <Home
+                    {...props}
+                    handleLogout={this.handleLogout}
+                    loggedInStatus={this.state.isLoggedIn}
+                  />
+                )}
+              />
+            )}
+
             <Route
               exact
               path="/login"
@@ -71,6 +87,7 @@ class App extends Component {
                 />
               )}
             />
+
             <Route
               exact
               path="/signup"
@@ -108,17 +125,6 @@ class App extends Component {
               />
             )}
 
-            <Route
-              path="/posts/:id"
-              render={(props) => (
-                <PostPage
-                  {...props}
-                  blogApi={BlogsApi}
-                  loggedInStatus={this.state.isLoggedIn}
-                  userId={this.state.user.id}
-                />
-              )}
-            />
             <Route
               exact
               path="/new"

@@ -48,6 +48,7 @@ const PostsList = ({ blogApi }) => {
                   title={post.title}
                   body={truncate(post.body)}
                   date={post.created_at.substring(0, 10)}
+                  username={post.username}
                 />
               ))}
             </ul>
