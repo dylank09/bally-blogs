@@ -21,12 +21,10 @@ const Post = ({ id, title, body, date, username }) => {
         {" "}
         Created by
         <span className="post-data"> {username} </span> on
-        <span className="post-data">
-          {" "}
-          {Moment(date, "YYYY-MM-DD").format("DD-MM-YYYY")}{" "}
-        </span>
+        <span className="post-data"> {Moment(date).format("DD-MM-YYYY")} </span>
       </p>
-      <br></br> <br></br>
+      <br></br>
+      <br></br>
       <br></br>
     </span>
   );
